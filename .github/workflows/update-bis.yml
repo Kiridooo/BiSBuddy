@@ -27,7 +27,7 @@ on:
       tier:
         description: 'SimC Tier (z.B. Tier33)'
         required: false
-        default: 'Tier33'
+        default: 'MID1'
       force_release:
         description: 'Release auch ohne Änderungen erstellen'
         required: false

@@ -1,0 +1,8 @@
+package-as: BiSBuddy
+
+ignore:
+  - tools
+  - .github
+  - .gitignore
+  - "*.py"
+  - README.md

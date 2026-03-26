@@ -1,7 +1,7 @@
 -- ============================================================================
 -- BiS Buddy - Core
--- Minimap-Icon mit Klick -> BiS-Liste für aktuelle Klasse/Spec
--- Datenquelle: SimulationCraft Profile (automatisch aktualisiert)
+-- Minimap icon click -> BiS list for current class/spec
+-- Data source: SimulationCraft profiles (auto-updated)
 -- ============================================================================
 
 local addonName, addon = ...
@@ -24,7 +24,7 @@ local function EnsureDefaults()
 end
 
 -- ============================================================================
--- Hilfsfunktionen
+-- Helper Functions
 -- ============================================================================
 
 local function GetPlayerClassKey()
@@ -39,10 +39,10 @@ end
 local function GetPlayerSpecName()
     local specIndex = GetPlayerSpecIndex()
     local _, name = GetSpecializationInfo(specIndex)
-    return name or "Unbekannt"
+    return name or "Unknown"
 end
 
--- Item-Link Cache (Items werden asynchron geladen)
+-- Item link cache (items load asynchronously)
 local itemCache = {}
 
 local function LoadItemAsync(itemID, callback)
@@ -67,7 +67,7 @@ local function LoadItemAsync(itemID, callback)
 end
 
 -- ============================================================================
--- Minimap-Button
+-- Minimap Button
 -- ============================================================================
 
 local minimapButton = CreateFrame("Button", "BiSBuddyMinimapButton", Minimap)
@@ -113,13 +113,13 @@ end)
 minimapButton:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_LEFT")
     GameTooltip:SetText("BiS Buddy", 1, 0.82, 0)
-    GameTooltip:AddLine("Linksklick: BiS-Liste anzeigen", 1, 1, 1)
-    GameTooltip:AddLine("Rechtsklick: Daten neu laden", 0.7, 0.7, 0.7)
-    GameTooltip:AddLine("Ziehen: Icon verschieben", 0.7, 0.7, 0.7)
+    GameTooltip:AddLine("Left-click: Show BiS list", 1, 1, 1)
+    GameTooltip:AddLine("Right-click: Reload data", 0.7, 0.7, 0.7)
+    GameTooltip:AddLine("Drag: Move icon", 0.7, 0.7, 0.7)
     if BiSBuddyData and BiSBuddyData.dataVersion then
         GameTooltip:AddLine(" ")
-        GameTooltip:AddLine("Daten: " .. (BiSBuddyData.dataTier or "?") ..
-            " | Stand: " .. BiSBuddyData.dataVersion, 0.4, 0.8, 1)
+        GameTooltip:AddLine("Data: " .. (BiSBuddyData.dataTier or "?") ..
+            " | Updated: " .. BiSBuddyData.dataVersion, 0.4, 0.8, 1)
     end
     GameTooltip:Show()
 end)
@@ -129,7 +129,7 @@ minimapButton:SetScript("OnLeave", function()
 end)
 
 -- ============================================================================
--- Haupt-Frame
+-- Main Frame
 -- ============================================================================
 
 local bisFrame = CreateFrame("Frame", "BiSBuddyFrame", UIParent, "BackdropTemplate")
@@ -151,7 +151,7 @@ bisFrame:SetBackdrop({
 })
 bisFrame:SetBackdropColor(0.05, 0.05, 0.08, 0.95)
 
--- Titel
+-- Title
 local titleBar = bisFrame:CreateTexture(nil, "ARTWORK")
 titleBar:SetTexture("Interface\\DialogFrame\\UI-DialogBox-Header")
 titleBar:SetSize(280, 64)
@@ -161,24 +161,24 @@ local titleText = bisFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 titleText:SetPoint("TOP", 0, -2)
 titleText:SetText("BiS Buddy")
 
--- Schließen
+-- Close button
 local closeBtn = CreateFrame("Button", nil, bisFrame, "UIPanelCloseButton")
 closeBtn:SetPoint("TOPRIGHT", -5, -5)
 
--- Klasse + Spec Info
+-- Class + Spec info
 local infoText = bisFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 infoText:SetPoint("TOP", 0, -30)
 
--- Datenquelle
+-- Data source
 local sourceText = bisFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 sourceText:SetPoint("TOP", 0, -48)
 sourceText:SetTextColor(0.6, 0.6, 0.6)
 
--- Fortschrittsanzeige (X/Y BiS Items ausgerüstet)
+-- Progress display (X/Y BiS items equipped)
 local progressText = bisFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 progressText:SetPoint("TOP", 0, -62)
 
--- Scroll-Frame
+-- Scroll frame
 local scrollFrame = CreateFrame("ScrollFrame", "BiSBuddyScrollFrame", bisFrame, "UIPanelScrollFrameTemplate")
 scrollFrame:SetPoint("TOPLEFT", 16, -78)
 scrollFrame:SetPoint("BOTTOMRIGHT", -32, 16)
@@ -188,7 +188,7 @@ scrollChild:SetSize(390, 1)
 scrollFrame:SetScrollChild(scrollChild)
 
 -- ============================================================================
--- Item-Zeilen
+-- Item Rows
 -- ============================================================================
 
 local itemRows = {}
@@ -198,20 +198,20 @@ local function CreateItemRow(parent, index)
     row:SetSize(385, 32)
     row:SetPoint("TOPLEFT", 0, -(index - 1) * 34)
 
-    -- Item-Icon
+    -- Item icon
     row.icon = row:CreateTexture(nil, "ARTWORK")
     row.icon:SetSize(26, 26)
     row.icon:SetPoint("LEFT", 4, 0)
-    row.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93) -- Rand abschneiden
+    row.icon:SetTexCoord(0.07, 0.93, 0.07, 0.93)
 
-    -- Slot-Name
+    -- Slot name
     row.slotText = row:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
     row.slotText:SetPoint("LEFT", row.icon, "RIGHT", 6, 0)
     row.slotText:SetWidth(80)
     row.slotText:SetJustifyH("LEFT")
     row.slotText:SetTextColor(0.8, 0.7, 0.2)
 
-    -- Item-Name Button (klickbar)
+    -- Item name button (clickable)
     row.itemBtn = CreateFrame("Button", nil, row)
     row.itemBtn:SetPoint("LEFT", row.slotText, "RIGHT", 4, 0)
     row.itemBtn:SetPoint("RIGHT", row, "RIGHT", -30, 0)
@@ -221,12 +221,12 @@ local function CreateItemRow(parent, index)
     row.itemBtn.text:SetAllPoints()
     row.itemBtn.text:SetJustifyH("LEFT")
 
-    -- Status-Icon (equipped?)
+    -- Status icon (equipped?)
     row.statusIcon = row:CreateTexture(nil, "OVERLAY")
     row.statusIcon:SetSize(16, 16)
     row.statusIcon:SetPoint("RIGHT", -4, 0)
 
-    -- Hintergrund (alternierend)
+    -- Alternating background
     local bg = row:CreateTexture(nil, "BACKGROUND")
     bg:SetAllPoints()
     bg:SetColorTexture(1, 1, 1, (index % 2 == 0) and 0.03 or 0.06)
@@ -235,7 +235,7 @@ local function CreateItemRow(parent, index)
 end
 
 -- ============================================================================
--- BiS-Liste anzeigen
+-- Show BiS List
 -- ============================================================================
 
 local function ShowBiSList()
@@ -243,14 +243,14 @@ local function ShowBiSList()
     local specIndex = GetPlayerSpecIndex()
     local specName = GetPlayerSpecName()
 
-    -- Klassenfarbe
+    -- Class color
     local cc = RAID_CLASS_COLORS[classKey] or { r = 1, g = 1, b = 1 }
     infoText:SetText(string.format("|cff%02x%02x%02x%s|r - %s",
         cc.r * 255, cc.g * 255, cc.b * 255, UnitClass("player"), specName))
 
-    -- Daten prüfen
+    -- Check data
     if not BiSBuddyData or not BiSBuddyData.items then
-        sourceText:SetText("|cffff4444Data.lua fehlt oder ist leer!|r")
+        sourceText:SetText("|cffff4444Data.lua is missing or empty!|r")
         progressText:SetText("")
         for _, r in ipairs(itemRows) do r:Hide() end
         bisFrame:Show()
@@ -259,8 +259,8 @@ local function ShowBiSList()
 
     local classData = BiSBuddyData.items[classKey]
     if not classData then
-        sourceText:SetText("|cffff4444Keine BiS-Daten für " .. (UnitClass("player") or classKey) .. "!|r")
-        progressText:SetText("Führe den Updater aus oder warte auf ein Addon-Update.")
+        sourceText:SetText("|cffff4444No BiS data for " .. (UnitClass("player") or classKey) .. "!|r")
+        progressText:SetText("Run the updater or wait for an addon update.")
         for _, r in ipairs(itemRows) do r:Hide() end
         bisFrame:Show()
         return
@@ -268,21 +268,21 @@ local function ShowBiSList()
 
     local specData = classData[specIndex]
     if not specData then
-        sourceText:SetText("|cffff4444Keine Daten für " .. specName .. "!|r")
+        sourceText:SetText("|cffff4444No data for " .. specName .. "!|r")
         progressText:SetText("")
         for _, r in ipairs(itemRows) do r:Hide() end
         bisFrame:Show()
         return
     end
 
-    sourceText:SetText("Quelle: " .. (specData.source or "SimulationCraft") ..
-        " | Stand: " .. (specData.updated or "?"))
+    sourceText:SetText("Source: " .. (specData.source or "SimulationCraft") ..
+        " | Updated: " .. (specData.updated or "?"))
     sourceText:SetTextColor(0.6, 0.6, 0.6)
 
-    -- Alle Zeilen ausblenden
+    -- Hide all rows
     for _, r in ipairs(itemRows) do r:Hide() end
 
-    -- Sortierte Slots
+    -- Sorted slots
     local sortedSlots = {}
     for slotID, slotInfo in pairs(BiSBuddyData.SLOTS) do
         if specData.gear[slotID] then
@@ -304,13 +304,13 @@ local function ShowBiSList()
         local itemData = specData.gear[slotEntry.slotID]
         row.slotText:SetText(slotEntry.slotName)
 
-        -- Platzhalter-Text
-        row.itemBtn.text:SetText("|cffaaaaaa" .. (itemData.name or "Lade...") .. "|r")
+        -- Placeholder text
+        row.itemBtn.text:SetText("|cffaaaaaa" .. (itemData.name or "Loading...") .. "|r")
         row.itemBtn.link = nil
         row.itemBtn.itemID = itemData.itemID
         row.icon:SetTexture("Interface\\Icons\\INV_Misc_QuestionMark")
 
-        -- Item asynchron laden (Name, Link, Icon, Qualität)
+        -- Load item asynchronously (name, link, icon, quality)
         local currentRow = row
         local currentItemID = itemData.itemID
         LoadItemAsync(currentItemID, function(info)
@@ -339,7 +339,7 @@ local function ShowBiSList()
             GameTooltip:Hide()
         end)
 
-        -- Klick -> Chat-Link
+        -- Click -> chat link
         row.itemBtn:SetScript("OnClick", function(self)
             if self.link then
                 if ChatFrame1EditBox:IsVisible() then
@@ -350,7 +350,7 @@ local function ShowBiSList()
             end
         end)
 
-        -- Equipped-Check
+        -- Equipped check
         local equippedID = GetInventoryItemID("player", slotEntry.slotID)
         if equippedID and equippedID == itemData.itemID then
             row.statusIcon:SetTexture("Interface\\RaidFrame\\ReadyCheck-Ready")
@@ -363,9 +363,9 @@ local function ShowBiSList()
         row:Show()
     end
 
-    -- Fortschritt
+    -- Progress
     local pctColor = equippedCount == totalCount and "|cff00ff00" or "|cffffff00"
-    progressText:SetText(string.format("%s%d/%d BiS Items ausgerüstet|r",
+    progressText:SetText(string.format("%s%d/%d BiS items equipped|r",
         pctColor, equippedCount, totalCount))
 
     scrollChild:SetHeight(#sortedSlots * 34 + 10)
@@ -373,7 +373,7 @@ local function ShowBiSList()
 end
 
 -- ============================================================================
--- Klick-Handler
+-- Click Handler
 -- ============================================================================
 
 minimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
@@ -386,12 +386,12 @@ minimapButton:SetScript("OnClick", function(self, button)
         end
     elseif button == "RightButton" then
         ShowBiSList()
-        print("|cff00ccff[BiS Buddy]|r Daten neu geladen!")
+        print("|cff00ccff[BiS Buddy]|r Data reloaded!")
     end
 end)
 
 -- ============================================================================
--- Slash-Befehle
+-- Slash Commands
 -- ============================================================================
 
 SLASH_BISBUDDY1 = "/bis"
@@ -404,22 +404,22 @@ SlashCmdList["BISBUDDY"] = function(msg)
         BiSBuddyDB = {}
         EnsureDefaults()
         UpdateMinimapPosition()
-        print("|cff00ccff[BiS Buddy]|r Einstellungen zurückgesetzt.")
+        print("|cff00ccff[BiS Buddy]|r Settings reset.")
     elseif msg == "version" or msg == "info" then
         print("|cff00ccff[BiS Buddy]|r Info:")
         if BiSBuddyData then
-            print("  Daten-Stand: " .. (BiSBuddyData.dataVersion or "unbekannt"))
-            print("  Tier: " .. (BiSBuddyData.dataTier or "unbekannt"))
-            print("  Quelle: " .. (BiSBuddyData.dataSource or "unbekannt"))
+            print("  Data version: " .. (BiSBuddyData.dataVersion or "unknown"))
+            print("  Tier: " .. (BiSBuddyData.dataTier or "unknown"))
+            print("  Source: " .. (BiSBuddyData.dataSource or "unknown"))
         else
-            print("  Keine Daten geladen!")
+            print("  No data loaded!")
         end
     elseif msg == "help" then
-        print("|cff00ccff[BiS Buddy]|r Befehle:")
-        print("  /bis         - BiS-Liste anzeigen")
-        print("  /bis hide    - Fenster schließen")
-        print("  /bis info    - Daten-Version anzeigen")
-        print("  /bis reset   - Einstellungen zurücksetzen")
+        print("|cff00ccff[BiS Buddy]|r Commands:")
+        print("  /bis         - Show BiS list")
+        print("  /bis hide    - Close window")
+        print("  /bis info    - Show data version")
+        print("  /bis reset   - Reset settings")
     else
         if bisFrame:IsShown() then
             bisFrame:Hide()
@@ -441,9 +441,9 @@ eventFrame:SetScript("OnEvent", function(self, event)
     if event == "PLAYER_LOGIN" then
         EnsureDefaults()
         UpdateMinimapPosition()
-        local version = BiSBuddyData and BiSBuddyData.dataVersion or "keine Daten"
-        print("|cff00ccff[BiS Buddy]|r geladen! Daten: " .. version ..
-            " | Benutze |cff00ff00/bis|r oder klicke das Minimap-Icon.")
+        local version = BiSBuddyData and BiSBuddyData.dataVersion or "no data"
+        print("|cff00ccff[BiS Buddy]|r Loaded! Data: " .. version ..
+            " | Use |cff00ff00/bis|r or click the minimap icon.")
     elseif event == "ACTIVE_PLAYER_SPEC_CHANGED" then
         if bisFrame:IsShown() then
             ShowBiSList()
@@ -451,5 +451,5 @@ eventFrame:SetScript("OnEvent", function(self, event)
     end
 end)
 
--- ESC schließt das Fenster
+-- ESC closes the window
 tinsert(UISpecialFrames, "BiSBuddyFrame")

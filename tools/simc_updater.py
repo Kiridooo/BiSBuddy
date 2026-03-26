@@ -37,8 +37,8 @@ SIMC_RAW_BASE = "https://raw.githubusercontent.com/simulationcraft/simc"
 SIMC_API_BASE = "https://api.github.com/repos/simulationcraft/simc"
 
 # Standard-Branch und Tier (wird bei neuen Raids aktualisiert)
-DEFAULT_BRANCH = "thewarwithin"
-DEFAULT_TIER = "Tier33"
+DEFAULT_BRANCH = "midnight"
+DEFAULT_TIER = "MID1"
 
 # SimC Slot-Name -> WoW Inventory Slot ID
 SIMC_SLOT_MAP = {
@@ -217,7 +217,7 @@ def list_simc_profiles(branch: str, tier: str) -> list[str]:
 
 def generate_expected_filenames(tier: str) -> list[str]:
     """Generiert die erwarteten SimC-Dateinamen basierend auf CLASS_CONFIG."""
-    prefix = tier.replace("Tier", "T")  # "Tier33" -> "T33"
+    prefix = tier  # "MID1" stays "MID1"
     names = []
     for class_slug, class_info in CLASS_CONFIG.items():
         for spec_slug in class_info["specs"]:

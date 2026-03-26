@@ -157,7 +157,7 @@ jobs:
           # Game Version ID für TWW (The War Within) Retail
           # Aktuelle IDs findest du unter:
           # https://wow.curseforge.com/api/game/versions
-          GAME_VERSION_ID="11753"  # 11.1.0 - bei neuen Patches aktualisieren!
+          GAME_VERSION_ID="12115"  # 11.1.0 - bei neuen Patches aktualisieren!
           
           METADATA=$(cat <<EOF
           {

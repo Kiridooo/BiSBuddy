@@ -1,7 +1,7 @@
 -- ============================================================================
 -- BiS Buddy - Data (auto-generated 2026-03-26)
--- Quelle: SimulationCraft MID1 Profile
--- NICHT MANUELL BEARBEITEN!
+-- Source: SimulationCraft MID1 Profiles
+-- DO NOT EDIT MANUALLY!
 -- ============================================================================
 
 BiSBuddyData = BiSBuddyData or {}
@@ -11,29 +11,29 @@ BiSBuddyData.dataTier = "MID1"
 BiSBuddyData.dataSource = "SimulationCraft"
 
 BiSBuddyData.SLOTS = {
-    [1] = { name = "Kopf", slotID = 1 },
-    [2] = { name = "Hals", slotID = 2 },
-    [3] = { name = "Schulter", slotID = 3 },
-    [5] = { name = "Brust", slotID = 5 },
-    [6] = { name = "Taille", slotID = 6 },
-    [7] = { name = "Beine", slotID = 7 },
-    [8] = { name = "Fuesse", slotID = 8 },
-    [9] = { name = "Handgelenke", slotID = 9 },
-    [10] = { name = "Haende", slotID = 10 },
+    [1] = { name = "Head", slotID = 1 },
+    [2] = { name = "Neck", slotID = 2 },
+    [3] = { name = "Shoulder", slotID = 3 },
+    [5] = { name = "Chest", slotID = 5 },
+    [6] = { name = "Waist", slotID = 6 },
+    [7] = { name = "Legs", slotID = 7 },
+    [8] = { name = "Feet", slotID = 8 },
+    [9] = { name = "Wrists", slotID = 9 },
+    [10] = { name = "Hands", slotID = 10 },
     [11] = { name = "Ring 1", slotID = 11 },
     [12] = { name = "Ring 2", slotID = 12 },
-    [13] = { name = "Schmuck 1", slotID = 13 },
-    [14] = { name = "Schmuck 2", slotID = 14 },
-    [15] = { name = "Umhang", slotID = 15 },
-    [16] = { name = "Haupthand", slotID = 16 },
-    [17] = { name = "Nebenhand", slotID = 17 },
+    [13] = { name = "Trinket 1", slotID = 13 },
+    [14] = { name = "Trinket 2", slotID = 14 },
+    [15] = { name = "Back", slotID = 15 },
+    [16] = { name = "Main Hand", slotID = 16 },
+    [17] = { name = "Off Hand", slotID = 17 },
 }
 
 BiSBuddyData.items = {
 
     ["DEATHKNIGHT"] = {
         [1] = {
-            specName = "Blut",
+            specName = "Blood",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -77,7 +77,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Unheilig",
+            specName = "Unholy",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -102,7 +102,7 @@ BiSBuddyData.items = {
 
     ["DEMONHUNTER"] = {
         [1] = {
-            specName = "Verwuestung",
+            specName = "Havoc",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -125,7 +125,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Rachsucht",
+            specName = "Vengeance",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -151,7 +151,7 @@ BiSBuddyData.items = {
 
     ["DRUID"] = {
         [2] = {
-            specName = "Wildheit",
+            specName = "Feral",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -176,7 +176,7 @@ BiSBuddyData.items = {
 
     ["EVOKER"] = {
         [1] = {
-            specName = "Verheerung",
+            specName = "Devastation",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -202,7 +202,7 @@ BiSBuddyData.items = {
 
     ["HUNTER"] = {
         [1] = {
-            specName = "Tierherrschaft",
+            specName = "Beast Mastery",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -224,7 +224,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Treffsicherheit",
+            specName = "Marksmanship",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -246,7 +246,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Ueberleben",
+            specName = "Survival",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -271,7 +271,7 @@ BiSBuddyData.items = {
 
     ["MAGE"] = {
         [1] = {
-            specName = "Arkan",
+            specName = "Arcane",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -294,7 +294,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Feuer",
+            specName = "Fire",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -342,7 +342,7 @@ BiSBuddyData.items = {
 
     ["MONK"] = {
         [1] = {
-            specName = "Braumeister",
+            specName = "Brewmaster",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -364,7 +364,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Windlaeufer",
+            specName = "Windwalker",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -390,7 +390,7 @@ BiSBuddyData.items = {
 
     ["PALADIN"] = {
         [2] = {
-            specName = "Schutz",
+            specName = "Protection",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -413,7 +413,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Vergeltung",
+            specName = "Retribution",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -438,7 +438,7 @@ BiSBuddyData.items = {
 
     ["PRIEST"] = {
         [3] = {
-            specName = "Schatten",
+            specName = "Shadow",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -463,7 +463,7 @@ BiSBuddyData.items = {
 
     ["ROGUE"] = {
         [1] = {
-            specName = "Meucheln",
+            specName = "Assassination",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -486,7 +486,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Gesetzlosigkeit",
+            specName = "Outlaw",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -509,7 +509,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Taeuschung",
+            specName = "Subtlety",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -535,7 +535,7 @@ BiSBuddyData.items = {
 
     ["SHAMAN"] = {
         [1] = {
-            specName = "Elementar",
+            specName = "Elemental",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -558,7 +558,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Verstaerkung",
+            specName = "Enhancement",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -584,7 +584,7 @@ BiSBuddyData.items = {
 
     ["WARLOCK"] = {
         [1] = {
-            specName = "Gebrechen",
+            specName = "Affliction",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -607,7 +607,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Daemonologie",
+            specName = "Demonology",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -629,7 +629,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Zerstoerung",
+            specName = "Destruction",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -654,7 +654,7 @@ BiSBuddyData.items = {
 
     ["WARRIOR"] = {
         [1] = {
-            specName = "Waffen",
+            specName = "Arms",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -676,7 +676,7 @@ BiSBuddyData.items = {
             }
         },
         [2] = {
-            specName = "Furor",
+            specName = "Fury",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -699,7 +699,7 @@ BiSBuddyData.items = {
             }
         },
         [3] = {
-            specName = "Schutz",
+            specName = "Protection",
             source   = "SimulationCraft MID1",
             updated  = "2026-03-26",
             gear = {
@@ -725,19 +725,6 @@ BiSBuddyData.items = {
 }
 
 BiSBuddyData.classMap = {
-    ["Krieger"]        = "WARRIOR",
-    ["Magier"]         = "MAGE",
-    ["Priester"]       = "PRIEST",
-    ["Schurke"]        = "ROGUE",
-    ["Jaeger"]         = "HUNTER",
-    ["Hexenmeister"]   = "WARLOCK",
-    ["Schamane"]       = "SHAMAN",
-    ["Druide"]         = "DRUID",
-    ["Paladin"]        = "PALADIN",
-    ["Todesritter"]    = "DEATHKNIGHT",
-    ["Moench"]         = "MONK",
-    ["Daemonenjaeger"] = "DEMONHUNTER",
-    ["Rufer"]          = "EVOKER",
     ["Warrior"]        = "WARRIOR",
     ["Mage"]           = "MAGE",
     ["Priest"]         = "PRIEST",
@@ -746,8 +733,21 @@ BiSBuddyData.classMap = {
     ["Warlock"]        = "WARLOCK",
     ["Shaman"]         = "SHAMAN",
     ["Druid"]          = "DRUID",
+    ["Paladin"]        = "PALADIN",
     ["Death Knight"]   = "DEATHKNIGHT",
     ["Monk"]           = "MONK",
     ["Demon Hunter"]   = "DEMONHUNTER",
     ["Evoker"]         = "EVOKER",
+    ["Krieger"]        = "WARRIOR",
+    ["Magier"]         = "MAGE",
+    ["Priester"]       = "PRIEST",
+    ["Schurke"]        = "ROGUE",
+    ["Jaeger"]         = "HUNTER",
+    ["Hexenmeister"]   = "WARLOCK",
+    ["Schamane"]       = "SHAMAN",
+    ["Druide"]         = "DRUID",
+    ["Todesritter"]    = "DEATHKNIGHT",
+    ["Moench"]         = "MONK",
+    ["Daemonenjaeger"] = "DEMONHUNTER",
+    ["Rufer"]          = "EVOKER",
 }

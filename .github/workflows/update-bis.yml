@@ -140,54 +140,17 @@ jobs:
           prerelease: false
 
       # ---- CurseForge Upload ----
-      - name: Upload to CurseForge
+- name: Upload to CurseForge
         if: |
           (steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true')
           && env.CF_API_TOKEN != ''
+        uses: BigWigsMods/packager@v2
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-          CF_PROJECT_ID: ${{ secrets.CF_PROJECT_ID }}
-        run: |
-          # CurseForge Upload via API
-          # Dokumentation: https://support.curseforge.com/en/support/solutions/articles/9000197321
-          
-          VERSION="${{ steps.version.outputs.version }}"
-          ZIP_FILE="BiSBuddy-${VERSION}.zip"
-          
-          # Game Version ID für TWW (The War Within) Retail
-          # Aktuelle IDs findest du unter:
-          # https://wow.curseforge.com/api/game/versions
-          GAME_VERSION_ID="12115"  # 11.1.0 - bei neuen Patches aktualisieren!
-          
-          METADATA=$(cat <<EOF
-          {
-            "changelog": "Automatisches Update: BiS-Daten aus SimC ${{ env.TIER }} ($(date +%Y-%m-%d))",
-            "changelogType": "text",
-            "displayName": "BiSBuddy-${VERSION}",
-            "gameVersions": [${GAME_VERSION_ID}],
-            "releaseType": "release"
-          }
-          EOF
-          )
-          
-          echo "Uploading to CurseForge..."
-          
-          HTTP_STATUS=$(curl -s -o /tmp/cf_response.json -w "%{http_code}" \
-            -X POST \
-            -H "X-Api-Token: ${CF_API_TOKEN}" \
-            -F "metadata=${METADATA}" \
-            -F "file=@${ZIP_FILE}" \
-            "https://wow.curseforge.com/api/projects/${CF_PROJECT_ID}/upload-file")
-          
-          echo "HTTP Status: ${HTTP_STATUS}"
-          cat /tmp/cf_response.json
-          
-          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
-            echo "CurseForge Upload erfolgreich!"
-          else
-            echo "CurseForge Upload fehlgeschlagen!"
-            exit 1
-          fi
+          CF_API_KEY: ${{ secrets.CF_API_TOKEN }}
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: -p ${{ secrets.CF_PROJECT_ID }} -d
+        
 
       # ---- Zusammenfassung ----
       - name: Summary

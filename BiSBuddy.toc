@@ -1,0 +1,10 @@
+## Interface: 110100
+## Title: BiS Buddy
+## Notes: Zeigt Best-in-Slot Items für deine aktuelle Klasse und Spezialisierung an. Daten basieren auf SimulationCraft-Profilen.
+## Author: Janik
+## Version: @project-version@
+## SavedVariables: BiSBuddyDB
+## IconTexture: Interface\Icons\INV_Misc_Book_09
+
+Data.lua
+Core.lua

@@ -1,0 +1,204 @@
+# ============================================================================
+# BiS Buddy - Automatischer Update & Release Workflow
+# ============================================================================
+# Dieser Workflow:
+# 1. Läuft automatisch jeden Mittwoch (nach WoW-Reset EU)
+# 2. Holt aktuelle BiS-Daten aus SimulationCraft Profilen
+# 3. Generiert die Data.lua
+# 4. Committed Änderungen ins Repo
+# 5. Erstellt einen GitHub Release
+# 6. Uploaded das Addon auf CurseForge
+#
+# Benötigte GitHub Secrets:
+#   CF_API_TOKEN  - CurseForge API Token (https://authors.curseforge.com/account/api-tokens)
+#   CF_PROJECT_ID - CurseForge Projekt-ID (findest du in der Projekt-URL)
+# ============================================================================
+
+name: Update BiS Data & Release
+
+on:
+  # Jeden Mittwoch um 12:00 UTC (nach EU-Reset)
+  schedule:
+    - cron: '0 12 * * 3'
+
+  # Manuell auslösbar über GitHub UI
+  workflow_dispatch:
+    inputs:
+      tier:
+        description: 'SimC Tier (z.B. Tier33)'
+        required: false
+        default: 'Tier33'
+      force_release:
+        description: 'Release auch ohne Änderungen erstellen'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  update-and-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # ---- Setup ----
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # ---- BiS-Daten aktualisieren ----
+      - name: Fetch SimC BiS Data
+        run: |
+          TIER="${{ github.event.inputs.tier || 'Tier33' }}"
+          echo "Fetching data for tier: $TIER"
+          python tools/simc_updater.py \
+            --tier "$TIER" \
+            --output Data.lua
+          echo "TIER=$TIER" >> $GITHUB_ENV
+
+      # ---- Prüfe ob sich etwas geändert hat ----
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet Data.lua 2>/dev/null; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "Keine Änderungen in Data.lua"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Data.lua hat sich geändert!"
+            git diff --stat Data.lua
+          fi
+
+      # ---- Commit & Push ----
+      - name: Commit updated Data.lua
+        if: steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true'
+        run: |
+          git config user.name "BiS Buddy Bot"
+          git config user.email "bisbuddy-bot@users.noreply.github.com"
+          git add Data.lua
+          git commit -m "chore: update BiS data from SimC ${{ env.TIER }} ($(date +%Y-%m-%d))" || true
+          git push
+
+      # ---- Version bestimmen ----
+      - name: Determine version
+        if: steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true'
+        id: version
+        run: |
+          # Auto-Version: YYYY.MM.DD basierend auf aktuellem Datum
+          VERSION=$(date +%Y.%-m.%-d)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+          # Version in .toc aktualisieren
+          sed -i "s/@project-version@/$VERSION/g" BiSBuddy.toc
+
+      # ---- Addon-ZIP erstellen ----
+      - name: Package Addon
+        if: steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true'
+        run: |
+          # Erstelle den Addon-Ordner (ohne tools/ und .github/)
+          mkdir -p package/BiSBuddy
+          cp BiSBuddy.toc Data.lua Core.lua package/BiSBuddy/
+          cp README.md package/BiSBuddy/ 2>/dev/null || true
+
+          # ZIP erstellen
+          cd package
+          zip -r ../BiSBuddy-${{ steps.version.outputs.version }}.zip BiSBuddy/
+
+          echo "Addon gepackt:"
+          ls -la ../BiSBuddy-*.zip
+          unzip -l ../BiSBuddy-${{ steps.version.outputs.version }}.zip
+
+      # ---- GitHub Release ----
+      - name: Create GitHub Release
+        if: steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: BiS Buddy v${{ steps.version.outputs.version }}
+          body: |
+            ## BiS Buddy Update - ${{ steps.version.outputs.version }}
+
+            Automatisches Update der BiS-Daten aus SimulationCraft ${{ env.TIER }} Profilen.
+
+            ### Änderungen
+            - BiS-Daten aktualisiert (Stand: $(date +%Y-%m-%d))
+            - Quelle: SimulationCraft ${{ env.TIER }}
+
+            ### Installation
+            1. Lade `BiSBuddy-${{ steps.version.outputs.version }}.zip` herunter
+            2. Entpacke in `World of Warcraft/_retail_/Interface/AddOns/`
+            3. WoW neu starten
+          files: BiSBuddy-${{ steps.version.outputs.version }}.zip
+          draft: false
+          prerelease: false
+
+      # ---- CurseForge Upload ----
+      - name: Upload to CurseForge
+        if: |
+          (steps.changes.outputs.changed == 'true' || github.event.inputs.force_release == 'true')
+          && env.CF_API_TOKEN != ''
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_PROJECT_ID: ${{ secrets.CF_PROJECT_ID }}
+        run: |
+          # CurseForge Upload via API
+          # Dokumentation: https://support.curseforge.com/en/support/solutions/articles/9000197321
+          
+          VERSION="${{ steps.version.outputs.version }}"
+          ZIP_FILE="BiSBuddy-${VERSION}.zip"
+          
+          # Game Version ID für TWW (The War Within) Retail
+          # Aktuelle IDs findest du unter:
+          # https://wow.curseforge.com/api/game/versions
+          GAME_VERSION_ID="11753"  # 11.1.0 - bei neuen Patches aktualisieren!
+          
+          METADATA=$(cat <<EOF
+          {
+            "changelog": "Automatisches Update: BiS-Daten aus SimC ${{ env.TIER }} ($(date +%Y-%m-%d))",
+            "changelogType": "text",
+            "displayName": "BiSBuddy-${VERSION}",
+            "gameVersions": [${GAME_VERSION_ID}],
+            "releaseType": "release"
+          }
+          EOF
+          )
+          
+          echo "Uploading to CurseForge..."
+          
+          HTTP_STATUS=$(curl -s -o /tmp/cf_response.json -w "%{http_code}" \
+            -X POST \
+            -H "X-Api-Token: ${CF_API_TOKEN}" \
+            -F "metadata=${METADATA}" \
+            -F "file=@${ZIP_FILE}" \
+            "https://wow.curseforge.com/api/projects/${CF_PROJECT_ID}/upload-file")
+          
+          echo "HTTP Status: ${HTTP_STATUS}"
+          cat /tmp/cf_response.json
+          
+          if [ "$HTTP_STATUS" -ge 200 ] && [ "$HTTP_STATUS" -lt 300 ]; then
+            echo "CurseForge Upload erfolgreich!"
+          else
+            echo "CurseForge Upload fehlgeschlagen!"
+            exit 1
+          fi
+
+      # ---- Zusammenfassung ----
+      - name: Summary
+        if: always()
+        run: |
+          echo "## BiS Buddy Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.changes.outputs.changed }}" == "true" ]; then
+            echo "- ✅ Data.lua aktualisiert" >> $GITHUB_STEP_SUMMARY
+            echo "- 📦 Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+            echo "- 🎮 Tier: ${{ env.TIER }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- ℹ️ Keine Änderungen erkannt" >> $GITHUB_STEP_SUMMARY
+          fi

@@ -1,12 +1,12 @@
 -- ============================================================================
--- BiS Buddy - Data (auto-generated 2026-03-26)
+-- BiS Buddy - Data (auto-generated 2026-04-01)
 -- Source: SimulationCraft MID1 Profiles
 -- DO NOT EDIT MANUALLY!
 -- ============================================================================
 
 BiSBuddyData = BiSBuddyData or {}
 
-BiSBuddyData.dataVersion = "2026-03-26"
+BiSBuddyData.dataVersion = "2026-04-01"
 BiSBuddyData.dataTier = "MID1"
 BiSBuddyData.dataSource = "SimulationCraft"
 
@@ -35,7 +35,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Blood",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249970, name = "Item #249970" },
                 [2] = { itemID = 249368, name = "Item #249368" },
@@ -57,7 +57,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Frost",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249970, name = "Item #249970", bonusIDs = "40/6935/12676/12806/13335/13338/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "6935/13355/13468/13469" },
@@ -79,7 +79,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Unholy",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249970, name = "Item #249970", bonusIDs = "40/6935/12676/12806/13335/13338/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "6935/13355/13468/13469" },
@@ -104,7 +104,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Havoc",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 251109, name = "Item #251109", bonusIDs = "1808/4786/12806" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "4786/4800/12806/13668" },
@@ -127,7 +127,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Vengeance",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250033, name = "Item #250033" },
                 [2] = { itemID = 249368, name = "Item #249368" },
@@ -153,7 +153,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Feral",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250024, name = "Item #250024", bonusIDs = "1808/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13577/13668" },
@@ -172,13 +172,35 @@ BiSBuddyData.items = {
                 [16] = { itemID = 251077, name = "Item #251077" },
             }
         },
+        [3] = {
+            specName = "Guardian",
+            source   = "SimulationCraft MID1",
+            updated  = "2026-04-01",
+            gear = {
+                [1] = { itemID = 249913, name = "Item #249913", bonusIDs = "1808/3170/4786/4800/12806" },
+                [2] = { itemID = 251096, name = "Item #251096", bonusIDs = "12806/13577/13668" },
+                [3] = { itemID = 250022, name = "Item #250022", bonusIDs = "12806/13574/13574/13574/13574/13574/13574/13574" },
+                [5] = { itemID = 250027, name = "Item #250027", bonusIDs = "12806/13575/13575/13575/13575/13575/13575/13575" },
+                [6] = { itemID = 244573, name = "Item #244573", bonusIDs = "1808/8790/8960/12066/12214/12384/13622/13667/9627" },
+                [7] = { itemID = 250023, name = "Item #250023", bonusIDs = "12806/13575/13575/13575/13575/13575/13575/13575" },
+                [8] = { itemID = 251210, name = "Item #251210", bonusIDs = "12806/13577" },
+                [9] = { itemID = 244576, name = "Item #244576", bonusIDs = "1808/8790/8960/12066/12214/12384/13622/13667/9627" },
+                [10] = { itemID = 250025, name = "Item #250025", bonusIDs = "12806/13574/13574/13574/13574/13574/13574/13574" },
+                [11] = { itemID = 251093, name = "Item #251093", bonusIDs = "12806/13577/13668" },
+                [12] = { itemID = 251217, name = "Item #251217", bonusIDs = "12806/13577/13668" },
+                [13] = { itemID = 193701, name = "Item #193701", bonusIDs = "3148/4786/12806" },
+                [14] = { itemID = 260235, name = "Item #260235", bonusIDs = "12806/13577" },
+                [15] = { itemID = 193712, name = "Item #193712", bonusIDs = "12806/13577" },
+                [16] = { itemID = 251162, name = "Item #251162", bonusIDs = "4786/12806" },
+            }
+        },
     },
 
     ["EVOKER"] = {
         [1] = {
             specName = "Devastation",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249997, name = "Item #249997", bonusIDs = "1808/13575" },
                 [2] = { itemID = 250247, name = "Item #250247" },
@@ -204,7 +226,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Beast Mastery",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249988, name = "Item #249988", bonusIDs = "40/1808/12676/12806/13335/13338/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13577/13668" },
@@ -226,7 +248,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Marksmanship",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249988, name = "Item #249988", bonusIDs = "1808/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "1808" },
@@ -248,7 +270,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Survival",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249988, name = "Item #249988", bonusIDs = "1808/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "1808" },
@@ -273,7 +295,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Arcane",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250060, name = "Item #250060", bonusIDs = "13534" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "13534" },
@@ -296,7 +318,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Fire",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250060, name = "Item #250060", bonusIDs = "1808/12214/12667/13575/13575/13575/12497" },
                 [2] = { itemID = 250247, name = "Item #250247" },
@@ -318,7 +340,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Frost",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250060, name = "Item #250060", bonusIDs = "1808/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13577/13668" },
@@ -344,7 +366,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Brewmaster",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250015, name = "Item #250015", bonusIDs = "1808/12806/13575/13575/13575" },
                 [2] = { itemID = 240950, name = "Item #240950", bonusIDs = "8791/8960/12066/12214/13454/13622/13667/9627" },
@@ -366,7 +388,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Windwalker",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250015, name = "Item #250015", bonusIDs = "1808/6652/12667/12676/12806/13335/13338/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "3170/4786/4800/12806/13668" },
@@ -392,7 +414,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Protection",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249961, name = "Item #249961", bonusIDs = "1808/13575/13575/13575/13575" },
                 [2] = { itemID = 249368, name = "Item #249368", bonusIDs = "4786/4800/12806/13668" },
@@ -415,7 +437,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Retribution",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249961, name = "Item #249961", bonusIDs = "1808" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "1808" },
@@ -440,22 +462,22 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Shadow",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250051, name = "Item #250051", bonusIDs = "13575/13575/13575/13575" },
                 [2] = { itemID = 249368, name = "Item #249368" },
                 [3] = { itemID = 250049, name = "Item #250049", bonusIDs = "13574/13574/13574/13574" },
                 [5] = { itemID = 250054, name = "Item #250054", bonusIDs = "13575/13575/13575/13575" },
-                [6] = { itemID = 249319, name = "Item #249319" },
+                [6] = { itemID = 239664, name = "Item #239664" },
                 [7] = { itemID = 250050, name = "Item #250050", bonusIDs = "13575/13575/13575/13575" },
                 [8] = { itemID = 109796, name = "Item #109796" },
-                [9] = { itemID = 239660, name = "Item #239660" },
+                [9] = { itemID = 239648, name = "Item #239648", bonusIDs = "8793/12384" },
                 [10] = { itemID = 251172, name = "Item #251172" },
-                [11] = { itemID = 249920, name = "Item #249920" },
+                [11] = { itemID = 251217, name = "Item #251217" },
                 [12] = { itemID = 251093, name = "Item #251093" },
-                [13] = { itemID = 250223, name = "Item #250223" },
+                [13] = { itemID = 249346, name = "Item #249346" },
                 [14] = { itemID = 249343, name = "Item #249343", bonusIDs = "12806/13577" },
-                [15] = { itemID = 239661, name = "Item #239661" },
+                [15] = { itemID = 249370, name = "Item #249370" },
                 [16] = { itemID = 249286, name = "Item #249286" },
             }
         },
@@ -465,7 +487,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Assassination",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250006, name = "Item #250006", bonusIDs = "6652/12667/12806/13335/13338/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 249337, name = "Item #249337", bonusIDs = "12806/13577/13668" },
@@ -488,7 +510,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Outlaw",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 151336, name = "Item #151336", bonusIDs = "1808/12806/13577" },
                 [2] = { itemID = 249337, name = "Item #249337", bonusIDs = "12806/13577/13668" },
@@ -511,7 +533,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Subtlety",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250006, name = "Item #250006", bonusIDs = "12676/13338/13534/13575/13575/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 249368, name = "Item #249368", bonusIDs = "13534" },
@@ -537,7 +559,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Elemental",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249979, name = "Item #249979", bonusIDs = "40/1808/12676/12806/13335/13338/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13577/13668" },
@@ -560,7 +582,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Enhancement",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249979, name = "Item #249979", bonusIDs = "1808/13575/13575/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13577/13668" },
@@ -586,7 +608,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Affliction",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250042, name = "Item #250042", bonusIDs = "1808/13575" },
                 [2] = { itemID = 249368, name = "Item #249368", bonusIDs = "12806/13577/13668" },
@@ -609,7 +631,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Demonology",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250042, name = "Item #250042", bonusIDs = "1808/13575/13575/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 249368, name = "Item #249368", bonusIDs = "12806/13577/13668" },
@@ -631,7 +653,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Destruction",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 250042, name = "Item #250042", bonusIDs = "1808/13575/13575/13575/13575/13575" },
                 [2] = { itemID = 249368, name = "Item #249368", bonusIDs = "12806/13577/13668" },
@@ -656,7 +678,7 @@ BiSBuddyData.items = {
         [1] = {
             specName = "Arms",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249952, name = "Item #249952", bonusIDs = "12806/13335" },
                 [2] = { itemID = 249337, name = "Item #249337", bonusIDs = "12806/13335" },
@@ -678,7 +700,7 @@ BiSBuddyData.items = {
         [2] = {
             specName = "Fury",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249952, name = "Item #249952", bonusIDs = "12806/13335" },
                 [2] = { itemID = 250247, name = "Item #250247", bonusIDs = "12806/13335" },
@@ -701,7 +723,7 @@ BiSBuddyData.items = {
         [3] = {
             specName = "Protection",
             source   = "SimulationCraft MID1",
-            updated  = "2026-03-26",
+            updated  = "2026-04-01",
             gear = {
                 [1] = { itemID = 249952, name = "Item #249952" },
                 [2] = { itemID = 249368, name = "Item #249368" },
